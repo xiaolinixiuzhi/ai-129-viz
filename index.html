@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数字里的一二·九</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="lib/echarts.min.js"></script>
+  <script src="js/data.js"></script>
+</head>
+<body>
+  <!-- 标题区 -->
+  <header class="site-header">
+    <h1 class="site-title">数字里的一二·九</h1>
+    <p class="site-subtitle">1935 · 北平大中学生抗日救亡示威游行 · 交互式数据可视化</p>
+  </header>
+
+  <!-- 导航：三模块（模块二、三为占位） -->
+  <nav class="site-nav">
+    <a href="#module-timeline" class="nav-item active" data-module="timeline">一 · 时间节点</a>
+    <a href="#module-slogans" class="nav-item" data-module="slogans">二 · 口号谱系</a>
+    <a href="#module-legacy" class="nav-item" data-module="legacy">三 · 精神传承</a>
+  </nav>
+
+  <main class="site-main">
+    <!-- 模块一：时间节点（本步已完成） -->
+    <section id="module-timeline" class="module">
+      <h2 class="module-title">时间节点</h2>
+      <p class="module-desc">从九一八事变到瓦窑堡会议，追溯一二·九运动的历史脉络。</p>
+      <div id="chart-timeline" class="chart"></div>
+    </section>
+
+    <!-- 模块二：口号谱系（第二步实现） -->
+    <section id="module-slogans" class="module">
+      <h2 class="module-title">口号谱系</h2>
+      <p class="module-desc">四大口号及其历史指向：从反帝总纲到行动号召，口号层层递进，指向运动的不同诉求与目标。</p>
+      <div class="chart-toolbar">
+        <button id="btn-export-slogans" class="btn-export" type="button">导出 300dpi 静态图</button>
+      </div>
+      <div id="chart-slogans" class="chart"></div>
+    </section>
+
+    <!-- 模块三：精神传承（降级为页内文字区） -->
+    <section id="module-legacy" class="module">
+      <h2 class="module-title">精神传承</h2>
+      <div class="legacy-text">
+        <p>一二·九运动公开揭露了日本帝国主义侵华并吞华北的阴谋，打击了国民党政府妥协投降的政策，掀起了全国抗日民主运动的新高潮。大批青年学生在运动中觉醒，投笔从戎，成为抗日战争的中坚力量。这场运动所体现的爱国、进步、民主、科学精神，跨越时代，至今仍是激励青年担当民族使命的精神财富。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>数据依据中央党史和文献研究院、中国政府网等权威资料整理 · 字体使用思源黑体（Noto Sans SC，OFL 可商用许可）</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/slogans.js"></script>
+  <script>
+    // 模块间导航：点击导航项滚动到对应模块，并高亮当前项
+    (function () {
+      'use strict';
+      var navItems = document.querySelectorAll('.nav-item');
+      var modules = document.querySelectorAll('.module');
+      function activate(moduleKey) {
+        navItems.forEach(function (n) {
+          n.classList.toggle('active', n.getAttribute('data-module') === moduleKey);
+        });
+      }
+      navItems.forEach(function (n) {
+        n.addEventListener('click', function () {
+          activate(n.getAttribute('data-module'));
+        });
+      });
+      // 滚动监听：当前可见模块高亮
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) {
+              activate(en.target.getAttribute('id').replace('module-', ''));
+            }
+          });
+        }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+        modules.forEach(function (m) { obs.observe(m); });
+      }
+    })();
+  </script>
+</body>
+</html>
