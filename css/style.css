@@ -1,0 +1,161 @@
+/* 数字里的一二·九 · 样式表
+   配色（人工设计，庄重历史主题）：
+   底色 深墨褐 #1a1410，主色 一二·九红 #c0392b，强调 金 #d4a04c
+   字体：思源黑体（Noto Sans SC）/ 系统黑体，全部可商用 */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #1a1410;
+  --bg-card: #251c16;
+  --primary: #c0392b;
+  --primary-dim: #8a2a1f;
+  --accent: #d4a04c;
+  --text: #ece4d8;
+  --text-dim: #a89b8a;
+  --border: #3d2f24;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", "SimHei", sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* 标题区 */
+.site-header {
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+  background: linear-gradient(180deg, #2a1c14 0%, var(--bg) 100%);
+  border-bottom: 2px solid var(--primary);
+}
+.site-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+}
+.site-subtitle {
+  margin-top: 0.6rem;
+  color: var(--text-dim);
+  font-size: 1rem;
+}
+
+/* 导航 */
+.site-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.nav-item {
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 0.98rem;
+}
+.nav-item:hover { color: var(--accent); background: var(--bg); }
+.nav-item.active {
+  color: #fff;
+  background: var(--primary);
+}
+
+/* 主体 */
+.site-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.module { margin-bottom: 3.5rem; }
+.module-title {
+  font-size: 1.5rem;
+  color: var(--accent);
+  border-left: 4px solid var(--primary);
+  padding-left: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+.module-desc {
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+  padding-left: 1.2rem;
+}
+.chart {
+  width: 100%;
+  height: 560px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.placeholder {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  background: var(--bg-card);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.legacy-text {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: var(--text);
+  font-size: 1rem;
+}
+.legacy-text p { margin-bottom: 0.8rem; }
+.legacy-text p:last-child { margin-bottom: 0; }
+
+/* 页脚 */
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+/* 响应式 */
+@media (max-width: 640px) {
+  .site-title { font-size: 1.6rem; }
+  .chart { height: 440px; }
+  .site-nav { gap: 0.5rem; }
+  .nav-item { font-size: 0.85rem; padding: 0.3rem 0.7rem; }
+}
+
+/* 模块二 · 口号谱系：工具栏（导出按钮） */
+.chart-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  padding-left: 1.2rem;
+}
+.btn-export {
+  background: var(--primary);
+  color: #fff;
+  border: 1px solid var(--primary-dim);
+  border-radius: 4px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.88rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-export:hover { background: var(--primary-dim); }
+.btn-export:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* 口号谱系图容器：与模块一等高，力导图更舒展 */
+#chart-slogans.chart { height: 560px; }
